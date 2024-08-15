@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-
 import * as Utils from "@/utils";
 import Header from "@/header";
 
@@ -47,12 +46,12 @@ export default function Game2() {
     const points = calculatePoints(correctAnswer, currentGuess);
 
     setAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers]; // Copy previous state
-      newAnswers[index] = points; // Update the specific index with points
+      const newAnswers = [...prevAnswers];
+      newAnswers[index] = points;
 
       const activeIndex = newAnswers.indexOf("active");
       if (activeIndex !== -1 && activeIndex !== index) {
-        newAnswers[activeIndex] = null; // Clear the previous "active"
+        newAnswers[activeIndex] = null;
       }
 
       return newAnswers;
@@ -69,7 +68,7 @@ export default function Game2() {
       const nextIndex = prevAnswers.indexOf(null);
       const newAnswers = [...prevAnswers];
       if (nextIndex !== -1) {
-        newAnswers[nextIndex] = "active"; // Set the next "active"
+        newAnswers[nextIndex] = "active";
       }
       return newAnswers;
     });
@@ -84,15 +83,13 @@ export default function Game2() {
     setSliderValue("1612");
   };
 
-  // eslint-disable-next-line no-use-before-define
   const sumNumbers = (array: number[]): number => {
-    return array.reduce((sum, value) => {
-      if (typeof value === "number") {
-        return sum + value;
-      }
-      return sum;
-    }, 0);
+    return array.reduce((sum, value) => sum + value, 0);
   };
+
+  const numericAnswers = answers.filter(
+    (answer): answer is number => typeof answer === "number"
+  );
 
   const answerButtonBaseClasses =
     "cursor-pointer p-2 border border-gray-300 mt-1 rounded-full text-center";
@@ -109,17 +106,14 @@ export default function Game2() {
             <div>
               Question {questionNumber + 1} of {currentQuestions.length}
             </div>
-            <div>Score: {sumNumbers(answers)}</div>
+            <div>Score: {sumNumbers(numericAnswers)}</div>
           </div>
-          {/* Question heading */}
           <div className="mb-2">Which year did this happen?</div>
-          {/* Question */}
           <div className="font-serif text-2xl h-[360px] overflow-y-auto">
             {currentQuestions[questionNumber].question}
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
-          {/* Answer options */}
           <div>
             <input
               type="range"
@@ -137,7 +131,7 @@ export default function Game2() {
             />
             <p className="text-center text-lg">Your guess: {sliderValue}</p>
           </div>
-          {questionNumber < currentQuestions.length + 1 &&
+          {questionNumber < currentQuestions.length &&
             answers[questionNumber] === "active" && (
               <button
                 className={`${buttonBaseClasses} bg-blue-700`}
@@ -190,24 +184,6 @@ export default function Game2() {
             )}
         </div>
       </main>
-      {/* <div className="mt-14">
-        <div>active question: {questionNumber + 1}</div>
-        <div>selected answer: {sliderValue}</div>
-        <div>
-          correct answer: {currentQuestions[questionNumber].correctAnswer}
-        </div>
-        <div>
-          {answers.map((answer, index) => {
-            return (
-              <div key={index}>
-                question {index + 1}:
-                {(answer === null || answer === "active") && "unanswered"}
-                {(answer != null || answer != "active") && answers[index]}
-              </div>
-            );
-          })}
-        </div>
-      </div> */}
     </>
   );
 }
