@@ -85,10 +85,8 @@ export default function Game2() {
   };
 
   // eslint-disable-next-line no-use-before-define
-  const sumNumbers = (array) => {
-    // eslint-disable-next-line no-use-before-define
+  const sumNumbers = (array: number[]): number => {
     return array.reduce((sum, value) => {
-      // Only add to sum if value is a number
       if (typeof value === "number") {
         return sum + value;
       }
