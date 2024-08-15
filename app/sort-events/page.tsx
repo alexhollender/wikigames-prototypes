@@ -20,7 +20,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import questions3, { QuestionType3, QuestionSetsType } from "@/questions3";
+import questions3, { QuestionType3 } from "@/questions3";
 
 export default function Game4() {
   const [currentQuestionSet, setCurrentQuestionSet] = React.useState<
@@ -29,6 +29,7 @@ export default function Game4() {
   const [answerSubmitted, setAnswerSubmitted] = React.useState<boolean>(false);
   const [answerReveal, setAnswerReveal] = React.useState<boolean>(false);
   const [questionNumber, setQuestionNumber] = React.useState<number>(0);
+  const [score, setScore] = React.useState<number>(0);
 
   const updateAnswerOptions = () => {
     setCurrentQuestionSet((prevAnswerOptions) =>
@@ -37,10 +38,17 @@ export default function Game4() {
   };
 
   const handleSubmit = (): void => {
-    const result = currentQuestionSet.map((option, index) => ({
-      id: option.id,
-      position: option.correctPosition === index ? "correct" : "incorrect",
-    }));
+    const correctPositions = currentQuestionSet.filter(
+      (option, index) => option.correctPosition === index
+    ).length;
+
+    // Assign points
+    let points = 0;
+    if (correctPositions === 1) points = 5;
+    else if (correctPositions === 3) points = 10;
+
+    // Update score
+    setScore((prevScore) => prevScore + points);
 
     setAnswerSubmitted(true);
 
@@ -95,7 +103,7 @@ export default function Game4() {
         onDragEnd={handleDragEnd}
         collisionDetection={closestCorners}
       >
-        <div className="flex flex-col gap-y-4 mb-8">
+        <div className="flex flex-col gap-y-4 mb-8 h-[460px]">
           <SortableContext
             items={currentQuestionSet}
             strategy={verticalListSortingStrategy}
@@ -120,15 +128,19 @@ export default function Game4() {
           </SortableContext>
         </div>
       </DndContext>
-      {!answerSubmitted && (
+      {!answerReveal && (
         <button
-          className={`${buttonBaseClasses} bg-blue-700`}
+          className={`
+            ${buttonBaseClasses}
+            bg-blue-700
+            ${answerSubmitted && "opacity-50 pointer-events-none"}
+          `}
           onClick={handleSubmit}
         >
           Submit
         </button>
       )}
-      {answerSubmitted && (
+      {answerReveal && (
         <button
           onClick={advanceQuestion}
           className={`${buttonBaseClasses} bg-gray-700`}
@@ -136,6 +148,7 @@ export default function Game4() {
           Next question
         </button>
       )}
+      <div className="mt-4 text-center">Score: {score}</div>
     </main>
   );
 }
@@ -171,7 +184,7 @@ const AnswerOption: React.FC<{
       {...listeners}
       className={`
         border border-gray-300 p-5 cursor-grab touch-none font-serif relative
-        ${answerReveal ? "bg-green-200" : ""}
+        ${answerReveal ? "bg-green-200 pointer-events-none" : ""}
         ${!answerSubmitted && !answerReveal ? "bg-white" : ""}
         ${
           answerSubmitted && isCorrectPosition && !answerReveal

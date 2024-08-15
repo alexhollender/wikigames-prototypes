@@ -207,10 +207,10 @@ export default function Game1() {
 
 const Progress: React.FC<{ answers: Answers }> = ({ answers }) => {
   return (
-    <div className="mb-6 flex gap-x-5">
+    <div className="mb-6 flex gap-x-5 relative w-fit">
       {answers.map((answer, index) => {
         return (
-          <div key={index}>
+          <div key={index} className="relative z-10">
             {answer === "active" && <Icons.ProgressIndicators.Active />}
             {answer === null && <Icons.ProgressIndicators.Inactive />}
             {answer === true && <Icons.ProgressIndicators.Correct />}
@@ -218,6 +218,7 @@ const Progress: React.FC<{ answers: Answers }> = ({ answers }) => {
           </div>
         );
       })}
+      <div className="absolute h-[2px] w-full bg-gray-200 z-0 top-[12px]"></div>
     </div>
   );
 };
