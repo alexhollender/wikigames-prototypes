@@ -188,7 +188,7 @@ export default function Game3() {
             )}
         </div>
       </main>
-      <div className="mt-14">
+      {/* <div className="mt-14">
         <div>active question: {questionNumber + 1}</div>
         <div>selected answer: {selectedAnswer}</div>
         <div>
@@ -211,7 +211,7 @@ export default function Game3() {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

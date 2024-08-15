@@ -190,7 +190,7 @@ export default function Game2() {
             )}
         </div>
       </main>
-      <div className="mt-14">
+      {/* <div className="mt-14">
         <div>active question: {questionNumber + 1}</div>
         <div>selected answer: {sliderValue}</div>
         <div>
@@ -207,7 +207,7 @@ export default function Game2() {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
