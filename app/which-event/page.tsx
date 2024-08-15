@@ -62,7 +62,7 @@ export default function Game3() {
   };
 
   const answerButtonBaseClasses =
-    "cursor-pointer p-2 border border-gray-300 mt-1 rounded-full text-center";
+    "cursor-pointer p-2 border border-gray-300 mt-1 rounded text-center";
 
   const buttonBaseClasses =
     "cursor-pointer p-2 rounded-full text-center w-full text-white font-bold";
@@ -127,14 +127,14 @@ export default function Game3() {
 
   return (
     <>
-      <main className="w-[360px] h-[720px] border border-gray-300 p-4">
+      <main className="w-[360px] h-[820px] border border-gray-300 p-4">
         <div>
           <Header />
           <Progress answers={answers} />
           {/* Question heading */}
           <div className="mb-2 text-center">Which event happened in</div>
           {/* Question */}
-          <div className="font-serif text-[38px] text-center mb-8">
+          <div className="font-serif text-[38px] text-center mb-4">
             {currentQuestions[questionNumber].targetYear}
           </div>
         </div>
@@ -235,7 +235,7 @@ const Progress: React.FC<{ answers: Answers }> = ({ answers }) => {
 
 const Header = () => {
   return (
-    <div className="mb-8 flex gap-x-2 items-center">
+    <div className="mb-4 flex gap-x-2 items-center">
       <div>
         <Icons.Back />
       </div>
