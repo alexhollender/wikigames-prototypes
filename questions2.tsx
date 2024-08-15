@@ -60,6 +60,24 @@ const questions: QuestionsType2 = [
     ],
     correctAnswer: 2,
   },
+  {
+    targetYear: "1965",
+    answerOptions: [
+      "At Notre Dame Cathedral in Paris, Napoleon Bonaparte crowns himself Emperor of the French.",
+      "Alabama ratifies the 13th Amendment to the U.S. Constitution, followed by North Carolina, then Georgia; U.S. slaves were legally free within two weeks.",
+      "Puyi becomes Emperor of China at the age of two.",
+    ],
+    correctAnswer: 1,
+  },
+  {
+    targetYear: "1940",
+    answerOptions: [
+      "Walt Disney's animated musical film Fantasia is first released at New York's Broadway Theatre, on the first night of a roadshow.",
+      "The Soviet Union completes development of the AK-47, one of the first proper assault rifles.",
+      "Ruby Bridges becomes the first black child to attend an all-white elementary school in Louisiana.",
+    ],
+    correctAnswer: 0,
+  },
 ];
 
 export default questions;
