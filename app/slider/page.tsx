@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as Utils from "@/utils";
-import Header from "@/header";
+import * as Icons from "@/icons";
 
 type Answer = null | "active" | number;
 type Answers = Answer[];
@@ -187,3 +187,17 @@ export default function Game2() {
     </>
   );
 }
+
+const Header = () => {
+  return (
+    <div className="mb-8 flex gap-x-2 items-center">
+      <div>
+        <Icons.Back />
+      </div>
+      <div className="flex-1 font-bold">WikiDate Detective</div>
+      <div>
+        <Icons.More />
+      </div>
+    </div>
+  );
+};

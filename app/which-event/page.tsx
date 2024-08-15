@@ -4,7 +4,6 @@ import * as React from "react";
 
 import * as Utils from "@/utils";
 import * as Icons from "@/icons";
-import Header from "@/header";
 
 type Answer = null | "active" | true | false;
 type Answers = Answer[];
@@ -229,6 +228,20 @@ const Progress: React.FC<{ answers: Answers }> = ({ answers }) => {
           </div>
         );
       })}
+    </div>
+  );
+};
+
+const Header = () => {
+  return (
+    <div className="mb-8 flex gap-x-2 items-center">
+      <div>
+        <Icons.Back />
+      </div>
+      <div className="flex-1 font-bold">WikiDate Detective</div>
+      <div>
+        <Icons.More />
+      </div>
     </div>
   );
 };

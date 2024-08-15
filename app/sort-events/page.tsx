@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import * as Icons from "@/icons";
 import {
   DndContext,
   KeyboardSensor,
@@ -19,7 +20,6 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import Header from "@/header";
 import questions3, { QuestionType3, QuestionSetsType } from "@/questions3";
 
 export default function Game4() {
@@ -192,6 +192,20 @@ const AnswerOption: React.FC<{
       )}
 
       <div>{content}</div>
+    </div>
+  );
+};
+
+const Header = () => {
+  return (
+    <div className="mb-8 flex gap-x-2 items-center">
+      <div>
+        <Icons.Back />
+      </div>
+      <div className="flex-1 font-bold">WikiDate Detective</div>
+      <div>
+        <Icons.More />
+      </div>
     </div>
   );
 };
